@@ -26,6 +26,22 @@ struct ContentView: View {
                     }
                 }
             }
+
+            if !viewModel.tags.isEmpty {
+                ScrollView(.horizontal) {
+                    HStack {
+                        ForEach(viewModel.tags, id: \.self) { tag in
+                            Text(tag)
+                                .font(.caption)
+                                .padding(6)
+                                .background(Color.gray.opacity(0.2))
+                                .cornerRadius(4)
+                        }
+                    }
+                }
+                .padding(.vertical, 4)
+            }
+
             HStack {
                 TextField("Enter note...", text: $viewModel.inputText)
                     .textFieldStyle(RoundedBorderTextFieldStyle())

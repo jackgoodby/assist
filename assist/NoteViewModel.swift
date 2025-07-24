@@ -5,6 +5,7 @@ import UniformTypeIdentifiers
 class NoteViewModel: ObservableObject {
     @Published var notes: [Note] = []
     @Published var inputText: String = ""
+    @Published var tags: [String] = []
 
     private let savePath = FileManager.default
         .urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
@@ -20,6 +21,7 @@ class NoteViewModel: ObservableObject {
                 Note(id: UUID(), text: "Sample note 1", timestamp: Date()),
                 Note(id: UUID(), text: "Another preview!", timestamp: Date().addingTimeInterval(-3600))
             ]
+            tags = ["#swift", "#todo"]
         } else {
             loadNotes()
             notes.sort { $0.timestamp < $1.timestamp }
